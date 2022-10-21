@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../../firebase";
+import Footer from "../Footer";
 import "./styles.scss";
 
 const Login = () => {
@@ -26,12 +27,12 @@ const Login = () => {
           e.message ===
           "There is no user record corresponding to this identifier. The user may have been deleted."
         ) {
-          // history.push("/register");
-          // window.scrollTo({
-          //   top: document.body.scrollHeight,
-          //   left: 0,
-          //   behavior: "smooth",
-          // });
+          history.push("/register");
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            left: 0,
+            behavior: "smooth",
+          });
           alert("Please check your credentials again");
         } else {
           alert(e.message);
@@ -39,58 +40,66 @@ const Login = () => {
       });
   };
   return (
-    <div className="login">
-      <div className="Login__about">
-        <img
-          className="login__logo"
-          src="https://logos-world.net/wp-content/uploads/2020/04/Facebook-Logo.png"
-          alt=""
-        />
-        <h3>
-          Facebook giúp bạn kết nối và chia sẻ <br /> với mọi người trong cuộc
-          sống của bạn.
-        </h3>
-      </div>
-      <div className="loggin__container">
-        <form action="">
-          <center>
-            <input
-              type="email"
-              placeholder="Email hoặc số điện thoại"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </center>
-          <center>
-            <input
-              type="password"
-              placeholder="Mật khẩu"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </center>
-          <center>
-            <button onClick={login} type="submit" className="login__login">
-              Đăng nhập
-            </button>
-          </center>
-          <center>
-            <div className="sideinfo">
-              <h5>Quên mật khẩu?</h5>
-              <hr />
-              <Link to="/register" style={{ textDecoration: "none" }}>
-                <h5 className="rtd">Tạo tài khoản mới</h5>
+    <div className="container">
+      <div class="main">
+        <div class="main-left">
+          <img
+            className="facebook-logo"
+            src="https://logos-world.net/wp-content/uploads/2020/04/Facebook-Logo.png"
+            alt=""
+          />
+
+          <h3 class="facebook-status">
+            Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống
+            của bạn.
+          </h3>
+        </div>
+
+        <div class="main-right">
+          <div class="main-right-login">
+            <div class="main-right-email">
+              <input
+                type="email"
+                placeholder="Email hoặc số điện thoại"
+                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+              />
+            </div>
+
+            <div class="main-right-password">
+              <input
+                type="password"
+                placeholder="Mật khẩu"
+                onChange={(e) => setPassword(e.target.value)}
+                name="password"
+              />
+            </div>
+
+            <div class="main-right-button">
+              <button onClick={login} type="submit">
+                Đăng nhập
+              </button>
+            </div>
+
+            <div class="main-right-link">
+              <a href="">Quên mật khẩu?</a>
+            </div>
+
+            <div class="main-right-line"></div>
+
+            <div class="main-right-account">
+              <Link to="/register">
+                <button id="signup-account">Tạo tài khoản mới</button>
               </Link>
             </div>
-          </center>
-          <center>
-            <div className="content">
-              <p>
-                <span><a href="">Tạo Trang</a></span> dành cho người nổi tiếng, thương hiệu hoặc doanh
-                nghiệp.
-              </p>
-            </div>
-          </center>
-        </form>
+          </div>
+          <div class="main-right-page-link">
+            <span><a href="">Tạo Trang</a> dành cho người nổi tiếng, thương hiệu hoặc doanh nghiệp.</span>
+          </div>
+        </div>
       </div>
+
+      {/* <div class="footer"></div> */}
     </div>
   );
 };

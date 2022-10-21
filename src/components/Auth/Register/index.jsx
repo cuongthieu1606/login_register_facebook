@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { auth, db } from "../../../firebase";
+import DateOfBirth from "../DateOfBirth";
 import "./styles.scss";
 
 const Register = () => {
+  const [toggle, setToggle] = useState(false);
   const history = useHistory("");
   const [firstName, setFirtName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -43,183 +46,379 @@ const Register = () => {
       }
     });
   };
+
+  const handleClick = () => {
+    setToggle(!toggle);
+  };
   return (
-    <div className="register">
-      <div className="register__container">
-        <h1>Đăng ký</h1>
-        <p>Nhanh chóng và dễ dàng.</p>
-        <div className="hr3">
-          <hr />
-        </div>
-        <form action="">
-          <div className="row">
+    <div className="container">
+      <div class="modal">
+        <div class="modal-signup">
+          <Link to="/login">
+            <div class="modal-close" onClick={handleClick}>
+              X
+            </div>
+          </Link>
+
+          <div class="modal-signup-heading">
+            <p class="modal-signup-name">Đăng ký</p>
+
+            <p class="modal-signup-child-name">Nhanh chóng và dễ dàng.</p>
+          </div>
+
+          <div class="modal-signup-name">
             <input
-              onChange={(e) => setFirtName(e.target.value)}
-              type="name"
-              className="register__name"
+              type="text"
               placeholder="Họ"
+              onChange={(e) => setFirtName(e.target.value)}
               required
+              name="firstname"
             />
+
             <input
-              onChange={(e) => setLastName(e.target.value)}
-              type="name"
-              className="register__name"
+              type="text"
               placeholder="Tên"
+              onChange={(e) => setLastName(e.target.value)}
               required
+              name="lastname"
             />
           </div>
-          <center>
+
+          <div class="modal-signup-email">
             <input
-              onChange={(e) => setEmail(e.target.value)}
               type="email"
-              placeholder="Email"
+              placeholder="Số di động hoặc email"
+              onChange={(e) => setEmail(e.target.value)}
               required
+              name="email"
             />
-          </center>
-          <center>
+          </div>
+
+          <div class="modal-signup-password">
             <input
-              onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="Mật khẩu mới"
+              onChange={(e) => setPassword(e.target.value)}
               required
+              name="password"
             />
-          </center>
-          <h5 className="register__date">Ngày sinh</h5>
-
-          <div className="row">
-            <select
-              className="register__date2"
-              onChange={(e) => setBirthday([...birthday, e.target.value])}
-            >
-              <option value="Day">Ngày</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-              <option value="21">21</option>
-              <option value="22">22</option>
-              <option value="23">23</option>
-              <option value="24">24</option>
-              <option value="25">25</option>
-              <option value="26">26</option>
-              <option value="27">27</option>
-              <option value="28">28</option>
-              <option value="29">29</option>
-              <option value="30">30</option>
-              <option value="31">31</option>
-            </select>
-
-            <select
-              className="register__date3"
-              onChange={(e) => setBirthday([...birthday, e.target.value])}
-            >
-              <option value="Month">Tháng</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
-
-            <select
-              className="register__date3"
-              onChange={(e) => setBirthday([...birthday, e.target.value])}
-            >
-              <option value="Year">Năm</option>
-              <option value="2000">2000</option>
-              <option value="2001">2001</option>
-              <option value="2002">2002</option>
-              <option value="2003">2003</option>
-              <option value="2004">2004</option>
-              <option value="2005">2005</option>
-              <option value="2006">2006</option>
-              <option value="2007">2007</option>
-              <option value="2008">2008</option>
-              <option value="2009">2009</option>
-              <option value="2010">2010</option>
-              <option value="2011">2011</option>
-            </select>
           </div>
 
-          <h5 className="register__gender">Giới tính</h5>
+          <div class="modal-date-birth">
+            <label for="">Ngày sinh</label>
 
-          <div className="register__radiocontainer">
-            <div className="wrapper">
-              <label>Nữ</label>
+            <div class="modal-date-alert">
+              <a>&#63;</a>
+            </div>
+          </div>
+
+          <div class="modal-date-selection">
+            <div class="select-choice">
+              <select
+                name="dateOfBirth"
+                id=""
+                onChange={(e) => setBirthday([...birthday, e.target.value])}
+              >
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+
+                <option value="">5</option>
+
+                <option value="">6</option>
+
+                <option value="">7</option>
+
+                <option value="">8</option>
+
+                <option value="">9</option>
+
+                <option value="">10</option>
+
+                <option value="">11</option>
+
+                <option value="">12</option>
+
+                <option value="">13</option>
+
+                <option value="">14</option>
+
+                <option value="">15</option>
+
+                <option value="">16</option>
+
+                <option value="">17</option>
+
+                <option value="">18</option>
+
+                <option value="">19</option>
+
+                <option value="">20</option>
+
+                <option value="">21</option>
+
+                <option value="">22</option>
+
+                <option value="">23</option>
+
+                <option value="">24</option>
+
+                <option value="">25</option>
+
+                <option value="">26</option>
+
+                <option value="">27</option>
+
+                <option value="">28</option>
+
+                <option value="">29</option>
+
+                <option value="">30</option>
+
+                <option value="">31</option>
+              </select>
+            </div>
+            <div class="select-choice">
+              <select
+                name="dateOfBirth"
+                id=""
+                onChange={(e) => setBirthday([...birthday, e.target.value])}
+              >
+                <option value="">Jan</option>
+
+                <option value="">Feb</option>
+
+                <option value="">Mar</option>
+
+                <option value="">Apr</option>
+
+                <option value="">May</option>
+
+                <option value="">Jun</option>
+
+                <option value="">Jul</option>
+
+                <option value="">Aug</option>
+
+                <option value="">Sep</option>
+
+                <option value="">Auc</option>
+
+                <option value="">Nav</option>
+
+                <option value="">Dec</option>
+              </select>
+            </div>
+            <div class="select-choice">
+              <select
+                name="dateOfBirth"
+                id=""
+                onChange={(e) => setBirthday([...birthday, e.target.value])}
+              >
+                <option value="">1950</option>
+
+                <option value="">1951</option>
+
+                <option value="">1952</option>
+
+                <option value="">1953</option>
+
+                <option value="">1954</option>
+
+                <option value="">1955</option>
+
+                <option value="">1956</option>
+
+                <option value="">1957</option>
+
+                <option value="">1958</option>
+
+                <option value="">1959</option>
+
+                <option value="">1960</option>
+
+                <option value="">1961</option>
+
+                <option value="">1962</option>
+
+                <option value="">1963</option>
+
+                <option value="">1964</option>
+
+                <option value="">1965</option>
+
+                <option value="">1966</option>
+
+                <option value="">1967</option>
+
+                <option value="">1968</option>
+
+                <option value="">1969</option>
+
+                <option value="">1970</option>
+
+                <option value="">1971</option>
+
+                <option value="">1972</option>
+
+                <option value="">1973</option>
+
+                <option value="">1974</option>
+
+                <option value="">1975</option>
+
+                <option value="">1976</option>
+
+                <option value="">1977</option>
+
+                <option value="">1978</option>
+
+                <option value="">1979</option>
+
+                <option value="">1980</option>
+
+                <option value="">1981</option>
+
+                <option value="">1982</option>
+
+                <option value="">1983</option>
+
+                <option value="">1984</option>
+
+                <option value="">1985</option>
+
+                <option value="">1986</option>
+
+                <option value="">1987</option>
+
+                <option value="">1988</option>
+
+                <option value="">1989</option>
+
+                <option value="">1990</option>
+
+                <option value="">1991</option>
+
+                <option value="">1992</option>
+
+                <option value="">1993</option>
+
+                <option value="">1994</option>
+
+                <option value="">1995</option>
+
+                <option value="">1996</option>
+
+                <option value="">1997</option>
+
+                <option value="">1998</option>
+
+                <option value="">1999</option>
+
+                <option value="">2000</option>
+
+                <option value="">2001</option>
+
+                <option value="">2002</option>
+
+                <option value="">2003</option>
+
+                <option value="">2004</option>
+
+                <option value="">2005</option>
+
+                <option value="">2006</option>
+
+                <option value="">2007</option>
+
+                <option value="">2008</option>
+
+                <option value="">2009</option>
+
+                <option value="">2010</option>
+
+                <option value="">2011</option>
+
+                <option value="">2012</option>
+
+                <option value="">2013</option>
+
+                <option value="">2014</option>
+
+                <option value="">2015</option>
+
+                <option value="">2016</option>
+
+                <option value="">2017</option>
+
+                <option value="">2018</option>
+
+                <option value="">2019</option>
+
+                <option value="">2020</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-gender">
+            <label for="">Giới tính</label>
+
+            <div class="modal-gender-alert">
+              <a>&#63;</a>
+            </div>
+          </div>
+
+          <div class="modal-gender-choice">
+            <div class="modal-gender-name">
+              <label for="">Nữ</label>
+
               <input
                 onChange={(e) => setGender(e.target.value)}
                 type="radio"
-                name="gender"
+                name="sex"
                 required
               />
             </div>
 
-            <div className="wrapper">
-              <label>Nam</label>
+            <div class="modal-gender-name">
+              <label for="">Nam</label>
+
               <input
                 onChange={(e) => setGender(e.target.value)}
                 type="radio"
-                name="gender"
+                name="sex"
                 required
               />
             </div>
 
-            <div className="wrapper">
-              <label>Tuỳ chỉnh</label>
+            <div class="modal-gender-name">
+              <label for="">Tuỳ chỉnh</label>
+
               <input
                 onChange={(e) => setGender(e.target.value)}
                 type="radio"
-                name="gender"
+                name="sex"
                 required
               />
             </div>
           </div>
-          <div className="register__content">
-            <p className="register__policy">
-              Người dùng dịch vụ của chúng tôi có thể đã tải thông tin liên hệ
-              của bạn lên Facebook.
-              <span>Tìm hiểu thêm.</span>
-              <br />
-              Bằng cách nhấp vào Đăng ký, bạn đồng ý với{" "}
-              <span>Điều khoản, Chính sách quyền riêng tư</span> và{" "}
-              <span>Chính sách cookie</span> của chúng tôi. Bạn có thể nhận được
-              thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.
+
+          <div class="modal-signup-terms">
+            <span>Người dùng dịch vụ của chúng tôi có thể đã tải thông tin liên hệ của bạn lên Facebook. <a href="#">Tìm hiểu thêm</a>.</span>
+            <p>
+              Bằng cách nhấp vào Đăng ký, bạn đồng ý với <a href="#">Điều khoản, Chính sách
+              quyền riêng tư</a> và <a href="#">Chính sách cookie</a> của chúng tôi. Bạn có thể nhận
+              được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.
             </p>
           </div>
 
-          <center>
-            <button
-              onClick={register}
-              type="submit"
-              className="register__register"
-            >
+          <div class="modal-signup-button">
+            <button onClick={register} type="submit">
               Đăng ký
             </button>
-          </center>
-        </form>
+          </div>
+        </div>
       </div>
     </div>
   );

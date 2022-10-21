@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.select-choice{
+    width: 33%;
+    
+}
+.select-choice select{
+ 
+    width: 96%;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 17px;
+    border: none;
+    border: 1px solid #ccc;
+    color: #080808;
+}
