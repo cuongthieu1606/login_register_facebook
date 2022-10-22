@@ -41,23 +41,23 @@ const Login = () => {
   };
   return (
     <div className="container">
-      <div class="main">
-        <div class="main-left">
+      <div className="main">
+        <div className="main-left">
           <img
             className="facebook-logo"
             src="https://logos-world.net/wp-content/uploads/2020/04/Facebook-Logo.png"
             alt=""
           />
 
-          <h3 class="facebook-status">
+          <h3 className="facebook-status">
             Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống
             của bạn.
           </h3>
         </div>
 
-        <div class="main-right">
-          <div class="main-right-login">
-            <div class="main-right-email">
+        <div className="main-right">
+          <div className="main-right-login">
+            <div className="main-right-email">
               <input
                 type="email"
                 placeholder="Email hoặc số điện thoại"
@@ -66,7 +66,7 @@ const Login = () => {
               />
             </div>
 
-            <div class="main-right-password">
+            <div className="main-right-password">
               <input
                 type="password"
                 placeholder="Mật khẩu"
@@ -75,31 +75,31 @@ const Login = () => {
               />
             </div>
 
-            <div class="main-right-button">
+            <div className="main-right-button">
               <button onClick={login} type="submit">
                 Đăng nhập
               </button>
             </div>
 
-            <div class="main-right-link">
+            <div className="main-right-link">
               <a href="">Quên mật khẩu?</a>
             </div>
 
-            <div class="main-right-line"></div>
+            <div className="main-right-line"></div>
 
-            <div class="main-right-account">
+            <div className="main-right-account">
               <Link to="/register">
                 <button id="signup-account">Tạo tài khoản mới</button>
               </Link>
             </div>
           </div>
-          <div class="main-right-page-link">
+          <div className="main-right-page-link">
             <span><a href="">Tạo Trang</a> dành cho người nổi tiếng, thương hiệu hoặc doanh nghiệp.</span>
           </div>
         </div>
       </div>
 
-      {/* <div class="footer"></div> */}
+      {/* <div className="footer"></div> */}
     </div>
   );
 };

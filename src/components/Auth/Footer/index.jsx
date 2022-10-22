@@ -4,7 +4,7 @@ import "./styles.scss";
 const Footer = () => {
   return (
     <div className="container">
-      <div class="footer-link">
+      <div className="footer-link">
         <a href="">Sing Up</a>
 
         <a href="">Log In</a>
@@ -66,7 +66,7 @@ const Footer = () => {
         <a href="">Help</a>
       </div>
 
-      <div class="facebook-2020">
+      <div className="facebook-2020">
         <a href="">Facebook © 2020</a>
       </div>
     </div>
